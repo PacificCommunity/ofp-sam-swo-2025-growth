@@ -1,7 +1,7 @@
 # Prepare data, write CSV data tables
 
 # Before: SWO_age_data_for_SPC_200421.csv (boot/data)
-# After:  otoliths.csv
+# After:  otoliths.csv (data)
 
 library(TAF)
 
@@ -12,7 +12,8 @@ otoliths <- read.taf("boot/data/SWO_age_data_for_SPC_200421.csv")
 
 # Format table
 names(otoliths) <- c("id", "length", "sex", "age", "readability")
-otoliths <- otoliths[c("age", "length")]
+otoliths$sex <- tolower(otoliths$sex)
+otoliths <- otoliths[c("age", "length", "sex")]
 otoliths <- otoliths[order(otoliths$age),]
 
 # Convert eye orbital fork length (EOFL) measurements
