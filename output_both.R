@@ -17,8 +17,8 @@ report <- readRDS("model/report_both.rds")
 # Parameters
 par <- summary(sdreport(model))
 par <- data.frame(name=rownames(par), est=exp(par[,"Estimate"]),
-                  log=par[,"Estimate"], se=par[,"Std. Error"],
-                  row.names=NULL)
+                  log=par[,"Estimate"], se=par[,"Std. Error"], row.names=NULL)
+par$name <- sub("log_", "", par$name)
 
 # Growth curve
 x <- seq(0.25, 22, 0.25)
