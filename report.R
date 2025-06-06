@@ -66,5 +66,15 @@ lines(lower~age, curve.pooled, lty=1, lwd=0.5, col=gray(0.2))
 lines(upper~age, curve.pooled, lty=1, lwd=0.5, col=gray(0.2))
 dev.off()
 
+# Plot superimposed sexes
+taf.png("fit_superimposed", width=2400, height=2400, res=300)
+plot(NA, xlim=c(0,22), ylim=c(0,320), xlab="Age (yrs)", ylab="Length (cm)")
+grid()
+points(length~age, otoliths, subset=f, pch=16, col=adjustcolor(red, alpha=0.5))
+points(length~age, otoliths, subset=m, pch=16, col=adjustcolor(blue, alpha=0.5))
+lines(Lhat~age, curve.female, lwd=2, col=red)
+lines(Lhat~age, curve.male, lwd=2, col=blue)
+dev.off()
+
 # Write table
 write.taf(samples, dir="report")
