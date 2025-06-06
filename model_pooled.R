@@ -1,7 +1,7 @@
-# Run analysis for both sexes, write model results
+# Run analysis for pooled sexes, write model results
 
 # Before: otoliths.csv (data)
-# After: fit_both.rds, model_both.rds, report_both.rds (model)
+# After: fit_pooled.rds, model_pooled.rds, report_pooled.rds (model)
 
 library(TAF)
 library(RTMB)
@@ -23,6 +23,6 @@ fit <- nlminb(model$par, model$fn, model$gr,
 report <- model$report()
 
 # Save results
-saveRDS(fit, "model/fit_both.rds")
-saveRDS(model, "model/model_both.rds")
-saveRDS(report, "model/report_both.rds")
+saveRDS(fit, "model/fit_pooled.rds")
+saveRDS(model, "model/model_pooled.rds")
+saveRDS(report, "model/report_pooled.rds")
