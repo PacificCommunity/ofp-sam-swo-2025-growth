@@ -1,7 +1,8 @@
-# Produce plot for both sexes
+# Produce plots and tables for report
 
-# Before: otoliths.csv (data), curve_both.csv (output)
-# After:  fit_both.png, fit_male.csv, samples.csv (report)
+# Before: otoliths.csv (data),
+#         curve_both.csv, curve_female.csv, curve_male.csv (output)
+# After:  fit_both.png, fit_female.csv, fit_male.csv, samples.csv (report)
 
 library(TAF)
 library(areaplot)
@@ -11,6 +12,7 @@ mkdir("report")
 # Read results
 otoliths <- read.taf("data/otoliths.csv")
 curve.both <- read.taf("output/curve_both.csv")
+curve.female <- read.taf("output/curve_female.csv")
 curve.male <- read.taf("output/curve_male.csv")
 
 # Otolith samples
@@ -30,6 +32,17 @@ points(length~age, otoliths, pch=16, col="#0080a090")
 lines(Lhat~age, curve.both, lwd=2, col=2)
 lines(lower~age, curve.both, lty=1, lwd=0.5, col=2)
 lines(upper~age, curve.both, lty=1, lwd=0.5, col=2)
+dev.off()
+
+# Plot females
+f <- otoliths$sex == "female"
+taf.png("fit_female", width=2400, height=2400, res=300)
+confplot(cbind(lower,upper)~age, curve.female, xlim=c(0,22), ylim=c(0,320),
+         xlab="Age (yrs)", ylab="Length (cm)", col="mistyrose")
+points(length~age, otoliths, subset=f, pch=16, col="#0080a090")
+lines(Lhat~age, curve.female, lwd=2, col=2)
+lines(lower~age, curve.female, lty=1, lwd=0.5, col=2)
+lines(upper~age, curve.female, lty=1, lwd=0.5, col=2)
 dev.off()
 
 # Plot males
