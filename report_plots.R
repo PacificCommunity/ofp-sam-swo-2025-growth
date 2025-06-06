@@ -95,4 +95,6 @@ points(length~age, otoliths, subset=f, pch=16, col=adjustcolor(red, alpha=0.5))
 points(length~age, otoliths, subset=m, pch=16, col=adjustcolor(blue, alpha=0.5))
 lines(Lhat~age, curve.female, lwd=2, col=red)
 lines(Lhat~age, curve.male, lwd=2, col=blue)
+legend("topleft", c("female", "male"), lwd=3, col=c(red, blue), bty="n",
+       inset=0.02, y.intersp=1.25)
 dev.off()
